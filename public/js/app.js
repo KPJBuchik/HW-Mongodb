@@ -1,10 +1,7 @@
 
 
-// Grab the articles as a json
 $.getJSON("/articles", function (data) {
-    // For each one
     for (var i = 0; i < data.length; i++) {
-        // Display the apropos information on the page
         $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
         $("#articles").append("<button data-id='" + data[i]._id + "' class='save'>SAVE</button>")
     }
@@ -12,7 +9,6 @@ $.getJSON("/articles", function (data) {
 
 
 
-// Whenever someone clicks a p tag
 $(document).on("click", "p", function () {
     $("#notes").empty();
     var thisId = $(this).attr("data-id");
@@ -89,7 +85,7 @@ $(document).on("click", ".save", function () {
     $.ajax({
         method: "PATCH",
         url: "/articles/" + saveArticle,
-        data: { saved: true }
+       
     })
         .then(function (data) {
             console.log(data)
